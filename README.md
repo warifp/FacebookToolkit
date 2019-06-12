@@ -21,6 +21,12 @@ Graph API Facebook.</br>
 Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 </p>
 
+<p align="center">
+  <img src="images/version/1.3.png" width="350" title="Version 1.3" alt="Version 1.3">
+  <img src="images/version/1.4.png" width="350" title="Version 1.4" alt="Version 1.4">
+</p>
+
+
 ## Features in tools
 
 | Name                              | Status             | Information |
