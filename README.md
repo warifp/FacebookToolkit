@@ -21,10 +21,6 @@ Graph API Facebook.</br>
 Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 </p>
 
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/warifp/starcharts.svg)](https://starchart.cc/warifp/starcharts)
-
 ## Features in tools
 
 | Name                              | Status             | Information |
