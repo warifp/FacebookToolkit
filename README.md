@@ -53,6 +53,57 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 | Dump Username Profile Member Group| :white_check_mark: | retrieve all username member on group database     |
 | Dump URL Profile Member Group     | :white_check_mark: | retrieve all url profile member on group database     |
 
+
+## Version 
+
+Version 1.0 :
+
+    https://www.facebook.com/warifp/videos/2340053176234744/
+    
+  Changelog :
+  - Add tools
+
+
+Version 1.2 :
+
+    https://www.facebook.com/warifp/videos/2339461559627239/
+    
+  Changelog :
+  - Add tools++
+    
+    
+Version 1.3 :
+
+    https://www.facebook.com/photo.php?fbid=2340608509512544
+
+  Changelog : 
+- re-build with Climate
+- compress system
+- add engine file
+- add color file
+- add random file
+- change folder result
+- add folder and file config
+
+
+Version 1.4 :
+
+    https://www.facebook.com/warifp/videos/2340053176234744/
+ 
+  Changelog :
+- add get ID Member Group
+- add get Username Member Group
+- add get URL Profile Member Group
+- add arguments menu, version, last update.
+- add auto check requirements
+- add auto check validation access token
+- add story
+- add comment step
+- compress function
+- display improvements
+- and other improvements
+
+
 ## Installation 
 
 You can download the latest composer in [here](https://getcomposer.org/download/).
