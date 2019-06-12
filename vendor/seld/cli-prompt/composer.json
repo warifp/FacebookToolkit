@@ -1,0 +1,26 @@
+{
+    "name": "seld/cli-prompt",
+    "description": "Allows you to prompt for user input on the command line, and optionally hide the characters they type",
+    "type": "library",
+    "keywords": ["cli", "console", "hidden", "input", "prompt"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3"
+    },
+    "authors": [
+        {
+            "name": "Jordi Boggiano",
+            "email": "j.boggiano@seld.be"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Seld\\CliPrompt\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
+}
