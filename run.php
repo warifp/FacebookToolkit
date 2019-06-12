@@ -88,7 +88,7 @@ if($pilih>30 OR $pilih<1){
     if($pilih>30 OR $pilih<1) $type = "wahyuarifpurnomo";
 }
 if($pilih==1){
-    $type = "tools/getToken/getToken";
+    $type = "tools/getAccessToken/getAccessToken";
     $namatools = "\e[1;32mget Token\e[0m";
 }elseif($pilih==2){
     $type = "tools/getInformation/getInformation";
