@@ -28,7 +28,7 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 
 <p align="center">
   <a><br> UPDATE </br></a>
-  <img src="images/add_access_token.png" width="350" title="Access Token" alt="Access Token">
+  <img src="images/add_access_token.png" width="640" title="Access Token" alt="Access Token">
 </p>
 
 ## Features in tools
