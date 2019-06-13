@@ -113,7 +113,7 @@ You can download the latest composer in [here](https://getcomposer.org/download/
 
     git clone https://github.com/warifp/FacebookToolkit.git
 
-    composer require league/climate
+    composer update
 
 ## Requirements for using this tool
 
