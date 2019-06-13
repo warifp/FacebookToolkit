@@ -26,6 +26,11 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
   <img src="images/version/1.4.png" width="350" title="Version 1.4" alt="Version 1.4">
 </p>
 
+<p align="center">
+  <a><br> UPDATE </br></a>
+  <img src="images/add_access_token.png" width="350" title="Access Token" alt="Access Token">
+</p>
+
 ## Features in tools
 
 | Name                               | Status             | Information                                        |
