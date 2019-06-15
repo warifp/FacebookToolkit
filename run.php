@@ -2,8 +2,8 @@
 /**
  * Author  : Wahyu Arif Purnomo
  * Name    : Facebook Toolkit++
- * Version : 1.4
- * Update  : 12 June 2019
+ * Version : 1.5
+ * Update  : 15 June 2019
  * 
  * If you are a reliable programmer or the best developer, please don't change anything.
  * If you want to be appreciated by others, then don't change anything in this script.
@@ -21,29 +21,8 @@ $climate = new League\CLImate\CLImate;
 require_once('modules/progress.php');
 require_once('modules/menu.php');
 require_once('modules/config.php');
-require_once('modules/tokenvalidation.php');
 /** End Library */
 sleep(3);
-
-$climate->br()->info('Oops, additional programs are needed to run this tool.');
-sleep(5);
-$climate->br()->info('Start a check for needs..');
-progress($progress);
-
-if(!fsockopen("graph.facebook.com", 80)) {
-    die ("" . $climate->br()->backgroundRed()->out("Could not open the server, connection issues?"));
-}  
-
-if(phpversion() < "7.0.0"){
-    die ("" . $climate->br()->backgroundRed()->out("Your PHP Version is " . phpversion() . ", this PHP Version no support, please update to PHP Version 7."));
-}
-
-if(!function_exists('curl_init')) {
-    die ("" . $climate->br()->backgroundRed()->out("cURL not found! please install cURL"));
-}
-
-$climate->br()->backgroundGreen()->out('Congratulations, the requirements for the program have been fulfilled.');
-sleep(5);
 
 /** Check token */
 $climate->br()->info('Wait a minute, is check and validating access to Facebook tokens..');
@@ -183,8 +162,8 @@ if($type=="wahyuarifpurnomo"){
 /**
  * Author  : Wahyu Arif Purnomo
  * Name    : Facebook Toolkit++
- * Version : 1.4
- * Update  : 12 June 2019
+ * Version : 1.5
+ * Update  : 15 June 2019
  * 
  * If you are a reliable programmer or the best developer, please don't change anything.
  * If you want to be appreciated by others, then don't change anything in this script.
