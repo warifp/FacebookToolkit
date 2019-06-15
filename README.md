@@ -130,11 +130,21 @@ Version 1.5 :
 
 ## Installation
 
-You can download the latest composer in [here](https://getcomposer.org/download/).
+- Windows
+  
+  You can download the latest composer in [here](https://getcomposer.org/download/).
 
-    git clone https://github.com/warifp/FacebookToolkit.git
+    git clone https://github.com/warifp/FacebookToolkit
 
     composer update
+
+- Termux
+
+    pkg install php
+    
+    pkg install curl
+
+    git clone https://github.com/warifp/FacebookToolkit
 
 ## Requirements for using this tool
 
