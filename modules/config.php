@@ -42,7 +42,9 @@ if($status == "hidup"){
 
 } else if($status == "autoupdate"){
     $climate->br()->backgroundRed()->out('This tool is being updated automatically..');
-    system('git pull');
+    system('git fetch --all');
+    system('git reset --hard origin/master');
+    system('git pull origin master');
     exit;
 } else if($status == "update"){
     $climate->br()->backgroundRed()->out('Sorry, this tool has expired, the latest version is available : ' . $update . ', please update again.');
