@@ -117,6 +117,15 @@ Version 1.4 :
 -   display improvements
 -   and other improvements
 
+Version 1.5 :
+
+    https://www.facebook.com/photo.php?fbid=2345150569058338
+
+  Changelog :
+
+-   fix feature
+-   fix library
+-   and other.
 ## Installation
 
 You can download the latest composer in [here](https://getcomposer.org/download/).
