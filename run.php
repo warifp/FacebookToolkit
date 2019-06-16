@@ -50,21 +50,21 @@ $climate->usage();
 /** End Arguments Usage */
 
 /** Select */
-$input_pilih = $climate->br()->shout()->input('> Enter your choice (1-30) : ');
+$input_pilih = $climate->br()->shout()->input('> Enter your choice (1-29) : ');
 
 $pilih = $input_pilih->prompt();
 /** End Select */
 
-if($pilih>30 OR $pilih<1){
+if($pilih>29 OR $pilih<1){
     $climate->br()->error('Options not available, please choose existing ones!');
 
     /** Enter Select return */
-    $input_pilih = $climate->br()->shout()->input('> Enter your choice (1-30) : ');
+    $input_pilih = $climate->br()->shout()->input('> Enter your choice (1-29) : ');
 
     $pilih = $input_pilih->prompt();
     /** End Select return */
 
-    if($pilih>30 OR $pilih<1) $type = "wahyuarifpurnomo";
+    if($pilih>29 OR $pilih<1) $type = "wahyuarifpurnomo";
 }
 if($pilih==1){
     $type = "tools/getAccessToken/getAccessToken";
@@ -147,6 +147,12 @@ if($pilih==1){
 }elseif($pilih==27){
     $type = "tools/getLinkMemberGroup/getLinkMemberGroup";
     $namatools = "\e[1;32mview all data link member group\e[0m";
+}elseif($pilih==28){
+    $type = "tools/getBruteID/getBruteID";
+    $namatools = "\e[1;32mbrute force your friends by ID\e[0m";
+}elseif($pilih==29){
+    $type = "tools/getBruteIDMemberGroup/getBruteIDMemberGroup";
+    $namatools = "\e[1;32mbrute force Member Group by ID\e[0m";
 }
 if($type=="wahyuarifpurnomo"){
     $climate->br()->error("You don't choose anywhere tools.");

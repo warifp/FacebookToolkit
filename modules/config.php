@@ -10,50 +10,6 @@ require_once('vendor/system.php');
  * Please respect me for making this tool from the beginning.
  */
 
-/** Cek Additional */
-$climate->br()->info('Oops, additional programs are needed to run this tool.');
-sleep(5);
-$climate->br()->info('Start a check for needs..');
-progress($progress);
-
-if(!fsockopen("$cek_connection", 80)) {
-    die ("" . $climate->br()->backgroundRed()->out("Could not open the server, connection issues?"));
-}  
-
-if(phpversion() < "7.0.0"){
-    die ("" . $climate->br()->backgroundRed()->out("Your PHP Version is " . phpversion() . ", this PHP Version no support, please update to PHP Version 7."));
-}
-
-if(!function_exists('curl_init')) {
-    die ("" . $climate->br()->backgroundRed()->out("cURL not found! please install cURL"));
-}
-
-$climate->br()->backgroundGreen()->out('Congratulations, the requirements for the program have been fulfilled.');
-sleep(5);
-/** End Cek Additional */
-
-print $banner;
-sleep(3);
-$climate->table($data_socialmedia);
-sleep(3);
-
-/** Cek Status */
-if($status == "hidup"){
-
-} else if($status == "autoupdate"){
-    $climate->br()->backgroundRed()->out('This tool is being updated automatically..');
-    system('git fetch --all');
-    system('git reset --hard origin/master');
-    system('git pull origin master');
-    exit;
-} else if($status == "update"){
-    $climate->br()->backgroundRed()->out('Sorry, this tool has expired, the latest version is available : ' . $update . ', please update again.');
-    $climate->br()->info("usage : 'php run.php -update' or 'php run.php -u'");
-    exit;
-} else {
-    exit;
-}
-/** End Cek Status */
 
 /** Token Validation Function */
 

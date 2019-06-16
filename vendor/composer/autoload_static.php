@@ -36,11 +36,29 @@ class ComposerStaticInita36784190aa4c9e039245c33394b476e
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        's' => 
+        array (
+            'stringEncode' => 
+            array (
+                0 => __DIR__ . '/..' . '/paquettg/string-encode/src',
+            ),
+        ),
+        'P' => 
+        array (
+            'PHPHtmlParser' => 
+            array (
+                0 => __DIR__ . '/..' . '/paquettg/php-html-parser/src',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInita36784190aa4c9e039245c33394b476e::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInita36784190aa4c9e039245c33394b476e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInita36784190aa4c9e039245c33394b476e::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
