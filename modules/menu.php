@@ -15,7 +15,7 @@ $data_menu = [
         'no'            => '1',
   		'name'          => 'Get Access Token',
   		'information'   => 'get access token your facebook account',
-  		'Status'        => 'Disable',
+  		'Status'        => 'Active',
     ],
     [
         'no'            => '2',
