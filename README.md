@@ -70,6 +70,8 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 | Dump ID Member Group               | :white_check_mark: | retrieve all ID member on group database           |
 | Dump Username Profile Member Group | :white_check_mark: | retrieve all username member on group database     |
 | Dump URL Profile Member Group      | :white_check_mark: | retrieve all url profile member on group database  |
+| Brute Force ID                     | :white_check_mark: | brute force your friends by ID                     |
+| Brute Force ID Member Group        | :white_check_mark: | brute force Member Group by ID                     |
 
 ## Version
 
