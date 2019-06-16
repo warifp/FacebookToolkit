@@ -36,6 +36,10 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
   <img src="images/version/1.5.png" width="640" title="Version 1.5" alt="Version 1.5">
 </p>
 
+<p align="center">
+  <a><br> UPDATE 1.6 </br></a>
+  <img src="images/version/1.6.png" width="640" title="Version 1.6" alt="Version 1.6">
+</p>
 ## Features in tools
 
 | Name                               | Status             | Information                                        |
