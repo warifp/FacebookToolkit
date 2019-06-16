@@ -1,5 +1,6 @@
 {
     "require": {
-        "league/climate": "^3.5"
+        "league/climate": "^3.5",
+        "paquettg/php-html-parser": "^2.0"
     }
 }

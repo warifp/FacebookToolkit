@@ -173,6 +173,18 @@ $data_menu = [
   		'information'   => "retrieve all url profile member on group database",
   		'Status'        => 'Active',
     ],
+    [
+        'no'            => '28',
+  		'name'          => 'Brute Force ID',
+  		'information'   => "brute force your friends by ID",
+  		'Status'        => 'Active',
+    ],
+    [
+        'no'            => '29',
+  		'name'          => 'Brute Force ID Member Group',
+  		'information'   => "brute force Member Group by ID",
+  		'Status'        => 'Active',
+    ],
 ];
 
 /**
