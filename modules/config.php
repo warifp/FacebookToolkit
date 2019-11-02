@@ -1,15 +1,134 @@
 <?php
-require_once('vendor/system.php');
 /**
  * Author  : Wahyu Arif Purnomo
  * Name    : Facebook Toolkit++
- * Update  : 15 June 2019
+ * Update  : 02 November 2019
  * 
  * If you are a reliable programmer or the best developer, please don't change anything.
  * If you want to be appreciated by others, then don't change anything in this script.
  * Please respect me for making this tool from the beginning.
  */
 
+$version        = "1.7";
+$build          = "08 June 2019";
+$name           = "Facebook Toolkit++";
+$author         = "Wahyu Arif Purnomo";
+$update         = "02 November 2019 17.23";
+$url_based      = "https://graph.facebook.com";
+$url_token      = "config/token.txt";
+$cek_connection = "graph.facebook.com";
+$progress;
+$url_valid = "http://widhitools.000webhostapp.com/api/yahoo.php";
+$url_brute = "https://m.facebook.com";
+$token = file_get_contents($url_token);
+$banner    = "
+ _______  _______    _       _      ||
+|       ||       | _| |_   _| |_    || Author  : $author
+|    ___||_     _||_   _| |_   _|   || Version : $version
+|   |___   |   |    |_|     |_|     || Build   : $build
+|    ___|  |   |                    || Update  : $update
+|   |      |   | Facebook Toolkit++ || Name    : $name
+|___|      |___|        @2019       ||
+
+[!] a tool to get Facebook data, and some Facebook bots, and extra tools found on Facebook Toolkit++
+
+";
+
+$data_socialmedia = [
+    [
+        "Facebook", "https://www.facebook.com/warifp", 
+    ], 
+    [
+        "Instagram", "https://www.instagram.com/warifp", 
+    ], 
+    [
+        "Twitter", "https://www.twitter.com/wahyuarifp", 
+    ], 
+    [
+        "Linkedin", "https://id.linkedin.com/in/warifp", 
+    ], 
+    [
+        "Github", "https://www.github.com/warifp", 
+    ], 
+];
+
+$climate->arguments->add([
+    "menu" => [
+        "prefix" => "m", 
+        "longPrefix" => "menu", 
+        "description" => "tool menu", 
+        "noValue" => true, 
+    ], 
+    "version" => [
+        "prefix" => "v", 
+        "longPrefix" => "version", 
+        "description" => "version", 
+        "noValue" => true, 
+    ], 
+    "author" => [
+        "prefix" => "a", 
+        "longPrefix" => "author", 
+        "description" => "owner", 
+        "noValue" => true, 
+    ], 
+    "update" => [
+        "prefix" => "u", 
+        "longPrefix" => "update", 
+        "description" => "update version", 
+        "noValue" => true, 
+    ], "help" => [
+        "prefix" => "h", 
+        "longPrefix" => "help", 
+        "description" => "help", 
+        "noValue" => true, 
+    ], 
+]);
+$climate->arguments->parse();
+
+if ($climate->arguments->defined("menu")) {
+    $climate->br()->info("please wait, load the list menu");
+    sleep(7);
+    progress($progress);
+    $climate->bold()->backgroundRed()->Table($data_menu);
+    exit;
+} else if ($climate->arguments->defined("version")) {
+    echo $version;
+    exit;
+} else if ($climate->arguments->defined("author")) {
+    echo $author;
+    exit;
+} else if ($climate->arguments->defined("update")) {
+    system("git fetch --all");
+    system("git reset --hard origin/master");
+    system("git pull origin master");
+    exit;
+} else if ($climate->arguments->defined("help")) {
+    $climate->usage();
+    exit;
+} else {
+}
+
+$climate->br()->info("Oops, additional programs are needed to run this tool.");
+sleep(5);
+$climate->br()->info("Start a check for needs..");
+progress($progress);
+if (!fsockopen("$cek_connection", 80)) {
+    die("" . $climate->br()->backgroundRed()->out("Could not open the server, connection issues?"));
+}
+if (phpversion() < "7.0.0") {
+    die("" . $climate->br()->backgroundRed()->out("Your PHP Version is " . phpversion() . ", this PHP Version no support, please update to PHP Version 7."));
+}
+if (!function_exists("curl_init")) {
+    die("" . $climate->br()->backgroundRed()->out("cURL not found! please install cURL"));
+}
+
+$climate->br()->backgroundGreen()->out("Congratulations, the requirements for the program have been fulfilled.");
+
+sleep(5);
+print $banner;
+sleep(3);
+$climate->table($data_socialmedia);
+sleep(3);
 
 /** Token Validation Function */
 
@@ -69,8 +188,8 @@ if ($input->confirmed()) {
 /**
  * Author  : Wahyu Arif Purnomo
  * Name    : Facebook Toolkit++
- * Version : 1.5
- * Update  : 15 June 2019
+ * Version : 1.7
+ * Update  : 02 November 2019
  * 
  * If you are a reliable programmer or the best developer, please don't change anything.
  * If you want to be appreciated by others, then don't change anything in this script.
