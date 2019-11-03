@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser\Dom;
 
 use PHPHtmlParser\Exceptions\UnknownChildTypeException;
@@ -56,9 +56,19 @@ class HtmlNode extends InnerNode
     }
 
     /**
+     * @param bool $htmlSpecialCharsDecode
+     * @return void
+     */
+    public function setHtmlSpecialCharsDecode($htmlSpecialCharsDecode = false): void
+    {
+        parent::setHtmlSpecialCharsDecode($htmlSpecialCharsDecode);
+        $this->tag->setHtmlSpecialCharsDecode($htmlSpecialCharsDecode);
+    }
+
+    /**
      * Gets the inner html of this node.
-     *
      * @return string
+     * @throws ChildNotFoundException
      * @throws UnknownChildTypeException
      */
     public function innerHtml(): string
@@ -103,8 +113,9 @@ class HtmlNode extends InnerNode
     /**
      * Gets the html of this node, including it's own
      * tag.
-     *
      * @return string
+     * @throws ChildNotFoundException
+     * @throws UnknownChildTypeException
      */
     public function outerHtml(): string
     {

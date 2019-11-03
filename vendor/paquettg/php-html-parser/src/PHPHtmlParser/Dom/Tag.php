@@ -1,7 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser\Dom;
 
-use PHPHtmlParser\Dom;
 use stringEncode\Encode;
 
 /**
@@ -51,6 +50,11 @@ class Tag
      * @var mixed
      */
     protected $encode = null;
+
+    /**
+     * @var bool
+     */
+    private $HtmlSpecialCharsDecode = false;
 
     /**
      * Sets up the tag with a name.
@@ -143,6 +147,15 @@ class Tag
     }
 
     /**
+     * @param bool $htmlSpecialCharsDecode
+     * @return void
+     */
+    public function setHtmlSpecialCharsDecode($htmlSpecialCharsDecode = false): void
+    {
+        $this->HtmlSpecialCharsDecode = $htmlSpecialCharsDecode;
+    }
+
+    /**
      * Sets the noise for this tag (if any)
      *
      * @param string $noise
@@ -173,6 +186,9 @@ class Tag
                 'doubleQuote' => true,
             ];
         }
+        if ($this->HtmlSpecialCharsDecode) {
+            $value['value'] = htmlspecialchars_decode($value['value']);
+        }
         $this->attr[$key] = $value;
 
         return $this;
@@ -186,7 +202,6 @@ class Tag
      */
     public function setStyleAttributeValue($attr_key, $attr_value): void
     {
-
         $style_array = $this->getStyleAttributeArray();
         $style_array[$attr_key] = $attr_value;
 
@@ -283,6 +298,7 @@ class Tag
      */
     public function getAttribute(string $key)
     {
+        $key = strtolower($key);
         if ( ! isset($this->attr[$key])) {
             return null;
         }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser;
 
 /**
@@ -13,6 +13,9 @@ namespace PHPHtmlParser;
  * @property bool removeStyles
  * @property bool preserveLineBreaks
  * @property bool removeDoubleSpace
+ * @property bool removeSmartyScripts
+ * @property bool depthFirstSearch
+ * @property bool htmlSpecialCharsDecode
  */
 class Options
 {
@@ -23,14 +26,17 @@ class Options
      * @param array
      */
     protected $defaults = [
-        'whitespaceTextNode' => true,
-        'strict'             => false,
-        'enforceEncoding'    => null,
-        'cleanupInput'       => true,
-        'removeScripts'      => true,
-        'removeStyles'       => true,
-        'preserveLineBreaks' => false,
-        'removeDoubleSpace'  => true,
+        'whitespaceTextNode'     => true,
+        'strict'                 => false,
+        'enforceEncoding'        => null,
+        'cleanupInput'           => true,
+        'removeScripts'          => true,
+        'removeStyles'           => true,
+        'preserveLineBreaks'     => false,
+        'removeDoubleSpace'      => true,
+        'removeSmartyScripts'    => true,
+        'depthFirstSearch'       => false,
+        'htmlSpecialCharsDecode' => false,
     ];
 
     /**
