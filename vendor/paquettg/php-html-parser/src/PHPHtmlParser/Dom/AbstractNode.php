@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser\Dom;
 
 use PHPHtmlParser\Exceptions\CircularException;
@@ -11,13 +11,12 @@ use PHPHtmlParser\Finder;
 
 /**
  * Dom node object.
- *
- * @property string outerhtml
- * @property string innerhtml
- * @property string text
- * @property int prev
- * @property int next
- * @property \PHPHtmlParser\Dom\Tag tag
+ * @property string    outerhtml
+ * @property string    innerhtml
+ * @property string    text
+ * @property int       prev
+ * @property int       next
+ * @property Tag       tag
  * @property InnerNode parent
  */
 abstract class AbstractNode
@@ -25,8 +24,7 @@ abstract class AbstractNode
     private static $count = 0;
     /**
      * Contains the tag name/type
-     *
-     * @var \PHPHtmlParser\Dom\Tag
+     * @var Tag
      */
     protected $tag;
 
@@ -64,6 +62,11 @@ abstract class AbstractNode
      * @var array
      */
     protected $children = [];
+
+    /**
+     * @var bool
+     */
+    protected $htmlSpecialCharsDecode = false;
 
     /**
      * Creates a unique id for this node.
@@ -124,6 +127,16 @@ abstract class AbstractNode
     }
 
     /**
+     * @param bool $htmlSpecialCharsDecode
+     * @return void
+     */
+    public function setHtmlSpecialCharsDecode($htmlSpecialCharsDecode = false): void
+    {
+        $this->htmlSpecialCharsDecode = $htmlSpecialCharsDecode;
+    }
+
+
+    /**
      * Reset node counter
      *
      * @return void
@@ -155,11 +168,10 @@ abstract class AbstractNode
 
     /**
      * Sets the parent node.
-     *
      * @param InnerNode $parent
      * @return AbstractNode
+     * @throws ChildNotFoundException
      * @throws CircularException
-     * @chainable
      */
     public function setParent(InnerNode $parent): AbstractNode
     {
@@ -271,8 +283,8 @@ abstract class AbstractNode
 
     /**
      * Attempts to get the next sibling.
-     *
      * @return AbstractNode
+     * @throws ChildNotFoundException
      * @throws ParentNotFoundException
      */
     public function nextSibling(): AbstractNode
@@ -285,9 +297,9 @@ abstract class AbstractNode
     }
 
     /**
-     * Attempts to get the previous sibling
-     *
+     * Attempts to get the previous sibling.
      * @return AbstractNode
+     * @throws ChildNotFoundException
      * @throws ParentNotFoundException
      */
     public function previousSibling(): AbstractNode
@@ -426,14 +438,16 @@ abstract class AbstractNode
 
     /**
      * Find elements by css selector
-     *
-     * @param string $selector
-     * @param int $nth
-     * @return mixed
+     * @param string   $selector
+     * @param int|null $nth
+     * @param bool     $depthFirst
+     * @return mixed|Collection|null
+     * @throws ChildNotFoundException
      */
-    public function find(string $selector, int $nth = null)
+    public function find(string $selector, int $nth = null, bool $depthFirst = false)
     {
         $selector = new Selector($selector, new SelectorParser());
+        $selector->setDepthFirstFind($depthFirst);
         $nodes    = $selector->find($this);
 
         if ( ! is_null($nth)) {
@@ -450,9 +464,10 @@ abstract class AbstractNode
 
     /**
      * Find node by id
-     *
      * @param int $id
      * @return bool|AbstractNode
+     * @throws ChildNotFoundException
+     * @throws ParentNotFoundException
      */
     public function findById(int $id)
     {

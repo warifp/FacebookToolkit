@@ -1,11 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser;
 
 use PHPHtmlParser\Dom\AbstractNode;
+use PHPHtmlParser\Dom\Collection;
 use PHPHtmlParser\Dom\HtmlNode;
 use PHPHtmlParser\Dom\TextNode;
+use PHPHtmlParser\Exceptions\ChildNotFoundException;
+use PHPHtmlParser\Exceptions\CircularException;
+use PHPHtmlParser\Exceptions\CurlException;
 use PHPHtmlParser\Exceptions\NotLoadedException;
+use PHPHtmlParser\Exceptions\ParentNotFoundException;
 use PHPHtmlParser\Exceptions\StrictException;
+use PHPHtmlParser\Exceptions\UnknownChildTypeException;
 use stringEncode\Encode;
 
 /**
@@ -109,6 +115,8 @@ class Dom
      * Returns the inner html of the root node.
      *
      * @return string
+     * @throws ChildNotFoundException
+     * @throws UnknownChildTypeException
      */
     public function __toString(): string
     {
@@ -128,11 +136,13 @@ class Dom
 
     /**
      * Attempts to load the dom from any resource, string, file, or URL.
-     *
      * @param string $str
-     * @param array $options
+     * @param array  $options
      * @return Dom
-     * @chainable
+     * @throws ChildNotFoundException
+     * @throws CircularException
+     * @throws CurlException
+     * @throws StrictException
      */
     public function load(string $str, array $options = []): Dom
     {
@@ -151,11 +161,12 @@ class Dom
 
     /**
      * Loads the dom from a document file/url
-     *
      * @param string $file
-     * @param array $options
+     * @param array  $options
      * @return Dom
-     * @chainable
+     * @throws ChildNotFoundException
+     * @throws CircularException
+     * @throws StrictException
      */
     public function loadFromFile(string $file, array $options = []): Dom
     {
@@ -165,12 +176,14 @@ class Dom
     /**
      * Use a curl interface implementation to attempt to load
      * the content from a url.
-     *
-     * @param string $url
-     * @param array $options
-     * @param CurlInterface $curl
+     * @param string                            $url
+     * @param array                             $options
+     * @param CurlInterface|null $curl
      * @return Dom
-     * @chainable
+     * @throws ChildNotFoundException
+     * @throws CircularException
+     * @throws CurlException
+     * @throws StrictException
      */
     public function loadFromUrl(string $url, array $options = [], CurlInterface $curl = null): Dom
     {
@@ -186,11 +199,12 @@ class Dom
     /**
      * Parsers the html of the given string. Used for load(), loadFromFile(),
      * and loadFromUrl().
-     *
      * @param string $str
-     * @param array $option
+     * @param array  $option
      * @return Dom
-     * @chainable
+     * @throws ChildNotFoundException
+     * @throws CircularException
+     * @throws StrictException
      */
     public function loadStr(string $str, array $option = []): Dom
     {
@@ -228,23 +242,26 @@ class Dom
 
     /**
      * Find elements by css selector on the root node.
-     *
-     * @param string $selector
-     * @param int $nth
-     * @return mixed
+     * @param string   $selector
+     * @param int|null $nth
+     * @return mixed|Collection|null
+     * @throws ChildNotFoundException
+     * @throws NotLoadedException
      */
     public function find(string $selector, int $nth = null)
     {
         $this->isLoaded();
 
-        return $this->root->find($selector, $nth);
+        return $this->root->find($selector, $nth, $this->options->get('depthFirstSearch'));
     }
 
     /**
      * Find element by Id on the root node
-     *
      * @param int $id
-     * @return mixed
+     * @return bool|AbstractNode
+     * @throws ChildNotFoundException
+     * @throws NotLoadedException
+     * @throws ParentNotFoundException
      */
     public function findById(int $id)
     {
@@ -356,10 +373,11 @@ class Dom
 
     /**
      * Simple wrapper function that returns the first child.
-     *
-     * @return \PHPHtmlParser\Dom\AbstractNode
+     * @return AbstractNode
+     * @throws ChildNotFoundException
+     * @throws NotLoadedException
      */
-    public function firstChild(): \PHPHtmlParser\Dom\AbstractNode
+    public function firstChild(): AbstractNode
     {
         $this->isLoaded();
 
@@ -368,10 +386,11 @@ class Dom
 
     /**
      * Simple wrapper function that returns the last child.
-     *
-     * @return \PHPHtmlParser\Dom\AbstractNode
+     * @return AbstractNode
+     * @throws ChildNotFoundException
+     * @throws NotLoadedException
      */
-    public function lastChild(): \PHPHtmlParser\Dom\AbstractNode
+    public function lastChild(): AbstractNode
     {
         $this->isLoaded();
 
@@ -382,6 +401,7 @@ class Dom
      * Simple wrapper function that returns count of child elements
      *
      * @return int
+     * @throws NotLoadedException
      */
     public function countChildren(): int
     {
@@ -394,6 +414,7 @@ class Dom
      * Get array of children
      *
      * @return array
+     * @throws NotLoadedException
      */
     public function getChildren(): array
     {
@@ -406,6 +427,7 @@ class Dom
      * Check if node have children nodes
      *
      * @return bool
+     * @throws NotLoadedException
      */
     public function hasChildren(): bool
     {
@@ -417,9 +439,10 @@ class Dom
     /**
      * Simple wrapper function that returns an element by the
      * id.
-     *
-     * @param string $id
-     * @return \PHPHtmlParser\Dom\AbstractNode|null
+     * @param $id
+     * @return mixed|Collection|null
+     * @throws ChildNotFoundException
+     * @throws NotLoadedException
      */
     public function getElementById($id)
     {
@@ -431,9 +454,10 @@ class Dom
     /**
      * Simple wrapper function that returns all elements by
      * tag name.
-     *
      * @param string $name
-     * @return mixed
+     * @return mixed|Collection|null
+     * @throws ChildNotFoundException
+     * @throws NotLoadedException
      */
     public function getElementsByTag(string $name)
     {
@@ -445,9 +469,10 @@ class Dom
     /**
      * Simple wrapper function that returns all elements by
      * class name.
-     *
      * @param string $class
-     * @return mixed
+     * @return mixed|Collection|null
+     * @throws ChildNotFoundException
+     * @throws NotLoadedException
      */
     public function getElementsByClass(string $class)
     {
@@ -502,35 +527,43 @@ class Dom
         $str = mb_eregi_replace("<!\[CDATA\[(.*?)\]\]>", '', $str);
 
         // strip out <script> tags
-        if ($this->options->get('removeScripts') == true) {
+        if ($this->options->get('removeScripts')) {
             $str = mb_eregi_replace("<\s*script[^>]*[^/]>(.*?)<\s*/\s*script\s*>", '', $str);
             $str = mb_eregi_replace("<\s*script\s*>(.*?)<\s*/\s*script\s*>", '', $str);
         }
 
         // strip out <style> tags
-        if ($this->options->get('removeStyles') == true) {
+        if ($this->options->get('removeStyles')) {
             $str = mb_eregi_replace("<\s*style[^>]*[^/]>(.*?)<\s*/\s*style\s*>", '', $str);
             $str = mb_eregi_replace("<\s*style\s*>(.*?)<\s*/\s*style\s*>", '', $str);
         }
 
         // strip out server side scripts
-        if ($this->options->get('serverSideScriptis') == true){
+        if ($this->options->get('serverSideScripts')) {
             $str = mb_eregi_replace("(<\?)(.*?)(\?>)", '', $str);
         }
 
         // strip smarty scripts
-        $str = mb_eregi_replace("(\{\w)(.*?)(\})", '', $str);
+        if ($this->options->get('removeSmartyScripts')) {
+            $str = mb_eregi_replace("(\{\w)(.*?)(\})", '', $str);
+        }
 
         return $str;
     }
 
     /**
      * Attempts to parse the html in content.
+     *
+     * @return void
+     * @throws ChildNotFoundException
+     * @throws CircularException
+     * @throws StrictException
      */
     protected function parse(): void
     {
         // add the root node
         $this->root = new HtmlNode('root');
+        $this->root->setHtmlSpecialCharsDecode($this->options->htmlSpecialCharsDecode);
         $activeNode = $this->root;
         while ( ! is_null($activeNode)) {
             $str = $this->content->copyUntil('<');
@@ -578,6 +611,7 @@ class Dom
             ) {
                 // we found text we care about
                 $textNode = new TextNode($str, $this->options->removeDoubleSpace);
+                $textNode->setHtmlSpecialCharsDecode($this->options->htmlSpecialCharsDecode);
                 $activeNode->addChild($textNode);
             }
         }
@@ -626,7 +660,13 @@ class Dom
         }
 
         $tag  = strtolower($this->content->copyByToken('slash', true));
+        if (trim($tag) == '')
+        {
+            // no tag found, invalid < found
+            return $return;
+        }
         $node = new HtmlNode($tag);
+        $node->setHtmlSpecialCharsDecode($this->options->htmlSpecialCharsDecode);
 
         // attributes
         while ($this->content->char() != '>' &&
@@ -736,6 +776,7 @@ class Dom
      * Attempts to detect the charset that the html was sent in.
      *
      * @return bool
+     * @throws ChildNotFoundException
      */
     protected function detectCharset(): bool
     {

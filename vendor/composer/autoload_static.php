@@ -14,6 +14,7 @@ class ComposerStaticInita36784190aa4c9e039245c33394b476e
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'PHPHtmlParser\\' => 14,
         ),
         'L' => 
         array (
@@ -30,6 +31,10 @@ class ComposerStaticInita36784190aa4c9e039245c33394b476e
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'PHPHtmlParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paquettg/php-html-parser/src/PHPHtmlParser',
+        ),
         'League\\CLImate\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/climate/src',
@@ -42,13 +47,6 @@ class ComposerStaticInita36784190aa4c9e039245c33394b476e
             'stringEncode' => 
             array (
                 0 => __DIR__ . '/..' . '/paquettg/string-encode/src',
-            ),
-        ),
-        'P' => 
-        array (
-            'PHPHtmlParser' => 
-            array (
-                0 => __DIR__ . '/..' . '/paquettg/php-html-parser/src',
             ),
         ),
     );

@@ -69,16 +69,16 @@
         },
         {
             "name": "paquettg/php-html-parser",
-            "version": "2.0.2",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paquettg/php-html-parser.git",
-                "reference": "77e4a44b0916690b4300fe9abf98fd05bbba48f0"
+                "reference": "d1000936350fed2cb6c54058890d2d19c5ccba4f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/77e4a44b0916690b4300fe9abf98fd05bbba48f0",
-                "reference": "77e4a44b0916690b4300fe9abf98fd05bbba48f0",
+                "url": "https://api.github.com/repos/paquettg/php-html-parser/zipball/d1000936350fed2cb6c54058890d2d19c5ccba4f",
+                "reference": "d1000936350fed2cb6c54058890d2d19c5ccba4f",
                 "shasum": ""
             },
             "require": {
@@ -93,8 +93,8 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "PHPHtmlParser": "src/"
+                "psr-4": {
+                    "PHPHtmlParser\\": "src/PHPHtmlParser"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -115,7 +115,7 @@
                 "html",
                 "parser"
             ],
-            "time": "2019-02-10T01:35:49+00:00"
+            "time": "2019-08-18T18:27:45+00:00"
         },
         {
             "name": "paquettg/string-encode",
@@ -165,16 +165,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
+                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
                 "shasum": ""
             },
             "require": {
@@ -183,7 +183,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -208,7 +208,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2018-11-20T15:27:04+00:00"
+            "time": "2019-11-01T11:05:21+00:00"
         },
         {
             "name": "seld/cli-prompt",

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser\Dom;
 
 use ArrayAccess;
@@ -64,7 +64,6 @@ class Collection implements IteratorAggregate, ArrayAccess, Countable
      * the collection.
      *
      * @return string
-     * @throws EmptyCollectionException
      */
     public function __toString(): string
     {

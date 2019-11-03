@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 namespace PHPHtmlParser\Selector;
 
 use PHPHtmlParser\Dom\AbstractNode;
@@ -21,9 +21,14 @@ class Selector
     protected $selectors = [];
 
     /**
+     * @var bool
+     */
+    private $depthFirst = false;
+
+    /**
      * Constructs with the selector string
-     *
-     * @param string $selector
+     * @param string          $selector
+     * @param ParserInterface $parser
      */
     public function __construct(string $selector, ParserInterface $parser)
     {
@@ -41,11 +46,20 @@ class Selector
     }
 
     /**
+     * @param bool $status
+     * @return void
+     */
+    public function setDepthFirstFind(bool $status): void
+    {
+        $this->depthFirst = $status;
+    }
+
+    /**
      * Attempts to find the selectors starting from the given
      * node object.
-     *
      * @param AbstractNode $node
      * @return Collection
+     * @throws ChildNotFoundException
      */
     public function find(AbstractNode $node): Collection
     {
@@ -84,8 +98,9 @@ class Selector
      * @param array $nodes
      * @param array $rule
      * @param array $options
+     *
      * @return array
-     * @recursive
+     * @throws ChildNotFoundException
      */
     protected function seek(array $nodes, array $rule, array $options): array
     {
@@ -151,8 +166,19 @@ class Selector
                     if ($child instanceof InnerNode &&
                         $child->hasChildren()
                     ) {
-                        // we still want to check its children
-                        $children[] = $child;
+                        if ($this->depthFirst) {
+                            if ( ! isset($options['checkGrandChildren']) ||
+                                $options['checkGrandChildren']) {
+                                // we have a child that failed but are not leaves.
+                                $matches = $this->seek([$child], $rule, $options);
+                                foreach ($matches as $match) {
+                                    $return[] = $match;
+                                }
+                            }
+                        } else {
+                            // we still want to check its children
+                            $children[] = $child;
+                        }
                     }
                 }
 
@@ -251,8 +277,11 @@ class Selector
     protected function getNextChild(AbstractNode $node, AbstractNode $currentChild)
     {
         try {
-            // get next child
-            $child = $node->nextChild($currentChild->id());
+            $child = null;
+            if ($node instanceof InnerNode) {
+                // get next child
+                $child = $node->nextChild($currentChild->id());
+            }
         } catch (ChildNotFoundException $e) {
             // no more children
             $child = null;
@@ -318,16 +347,24 @@ class Selector
             $nodeValue = $node->getAttribute($rule['key']);
         }
 
-        $check = $this->match($rule['operator'], $rule['value'], $nodeValue);
+        $check = false;
+        if (!is_array($rule['value'])) {
+            $check = $this->match($rule['operator'], $rule['value'], $nodeValue);
+        }
 
         // handle multiple classes
         if ( ! $check && $rule['key'] == 'class') {
             $nodeClasses = explode(' ', $node->getAttribute('class'));
-            foreach ($nodeClasses as $class) {
-                if ( ! empty($class)) {
-                    $check = $this->match($rule['operator'], $rule['value'], $class);
+            foreach ($rule['value'] as $value) {
+                foreach ($nodeClasses as $class) {
+                    if ( ! empty($class)) {
+                        $check = $this->match($rule['operator'], $value, $class);
+                    }
+                    if ($check) {
+                        break;
+                    }
                 }
-                if ($check) {
+                if (!$check) {
                     break;
                 }
             }
