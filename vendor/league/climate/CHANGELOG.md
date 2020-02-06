@@ -1,6 +1,25 @@
 Changelog
 =========
 
+--------
+
+## 3.5.2 - 2019-12-01
+
+### Fixed
+
+* [Checkbox] Ensure we can output when the terminal width is unknown. [#156](https://github.com/thephpleague/climate/pull/156)
+
+--------
+
+## 3.5.1 - 2019-11-24
+
+### Fixed
+
+* [Art] Be stricter about matching filenames when looking for art. [#155](https://github.com/thephpleague/climate/issues/155)
+* [Support] Provide better support for Windows using GitHub actions.
+
+--------
+
 ## 3.5.0 - 2019-02-10
 
 ### Added
