@@ -21,6 +21,9 @@ class CliPrompt
     public static function prompt()
     {
         $stdin = fopen('php://stdin', 'r');
+        if (false === $stdin) {
+            throw new \RuntimeException('Failed to open STDIN, could not prompt user for input.');
+        }
         $answer = self::trimAnswer(fgets($stdin, 4096));
         fclose($stdin);
 
@@ -34,7 +37,7 @@ class CliPrompt
      *                               will be done using the regular prompt() function, otherwise a
      *                               \RuntimeException is thrown.
      * @return string
-     * @throws RuntimeException on failure to prompt, unless $allowFallback is true
+     * @throws \RuntimeException on failure to prompt, unless $allowFallback is true
      */
     public static function hiddenPrompt($allowFallback = false)
     {
@@ -51,6 +54,12 @@ class CliPrompt
                 // to work around https://bugs.php.net/bug.php?id=64634
                 $source = fopen($exe, 'r');
                 $target = fopen($tmpExe, 'w+');
+                if (false === $source) {
+                    throw new \RuntimeException('Failed to open '.$exe.' for reading.');
+                }
+                if (false === $target) {
+                    throw new \RuntimeException('Failed to open '.$tmpExe.' for writing.');
+                }
                 stream_copy_to_stream($source, $target);
                 fclose($source);
                 fclose($target);
@@ -78,7 +87,8 @@ class CliPrompt
             // handle other OSs with bash/zsh/ksh/csh if available to hide the answer
             $test = "/usr/bin/env %s -c 'echo OK' 2> /dev/null";
             foreach (array('bash', 'zsh', 'ksh', 'csh', 'sh') as $sh) {
-                if ('OK' === rtrim(shell_exec(sprintf($test, $sh)))) {
+                $output = shell_exec(sprintf($test, $sh));
+                if (is_string($output) && 'OK' === rtrim($output)) {
                     $shell = $sh;
                     break;
                 }
@@ -106,8 +116,12 @@ class CliPrompt
         return self::prompt();
     }
 
+    /**
+     * @param string|bool $str
+     * @return string
+     */
     private static function trimAnswer($str)
     {
-        return preg_replace('{\r?\n$}D', '', $str);
+        return preg_replace('{\r?\n$}D', '', (string) $str) ?: '';
     }
 }
