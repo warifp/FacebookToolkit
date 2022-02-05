@@ -139,29 +139,30 @@ Version 1.5 :
 
 ## Installation
 
-### Windows or Linux
+### Windows / Linux / macOS
+
 You can download the latest composer in [here](https://getcomposer.org/download/).
 
     git clone https://github.com/warifp/FacebookToolkit
-
-    composer 
+    cd FacebookToolkit
+    composer install
     
 ### Termux
 
     pkg install php
-
     pkg install curl
-
     pkg update
 
     git clone https://github.com/warifp/FacebookToolkit
+    cd FacebookToolkit
+    composer install
 
 
 ## Requirements for using this tool
 
 We need several requirements to use this tool to run smoothly.
 
-##### Linux
+##### Linux & macOS
 
 ![PHP 7.X](https://img.shields.io/badge/PHP-7.X-success.svg "PHP 7.X")
 ![PHP CURL](https://img.shields.io/badge/PHP%20CURL-ALL-success.svg "PHP CURL")
