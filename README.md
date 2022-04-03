@@ -143,8 +143,13 @@ Version 1.5 :
 You can download the latest composer in [here](https://getcomposer.org/download/).
 
     git clone https://github.com/warifp/FacebookToolkit
+    
+    cd FacebookToolkit
 
-    composer 
+    composer install 
+    
+    php run.php
+    
     
 ### Termux
 
@@ -155,7 +160,12 @@ You can download the latest composer in [here](https://getcomposer.org/download/
     pkg update
 
     git clone https://github.com/warifp/FacebookToolkit
-
+    
+    cd FacebookToolkit
+    
+    composer install 
+    
+    php run.php
 
 ## Requirements for using this tool
 
