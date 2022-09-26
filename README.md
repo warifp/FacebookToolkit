@@ -75,93 +75,91 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 | Brute Force ID                     | :white_check_mark: | brute force your friends by ID                     |
 | Brute Force ID Member Group        | :white_check_mark: | brute force Member Group by ID                     |
 
-
 ## Version
 
 Version 1.0 :
 
     https://www.facebook.com/warifp/videos/2340053176234744/
 
-  Changelog :
+Changelog :
 
--   Add tools
+- Add tools
 
 Version 1.2 :
 
     https://www.facebook.com/warifp/videos/2339461559627239/
 
-  Changelog :
+Changelog :
 
--   Add tools++
+- Add tools++
 
 Version 1.3 :
 
     https://www.facebook.com/photo.php?fbid=2340608509512544
 
-  Changelog : 
+Changelog :
 
--   re-build with Climate
--   compress system
--   add engine file
--   add color file
--   add random file
--   change folder result
--   add folder and file config
+- re-build with Climate
+- compress system
+- add engine file
+- add color file
+- add random file
+- change folder result
+- add folder and file config
 
 Version 1.4 :
 
     https://www.facebook.com/warifp/videos/2340053176234744/
 
-  Changelog :
+Changelog :
 
--   add get ID Member Group
--   add get Username Member Group
--   add get URL Profile Member Group
--   add arguments menu, version, last update.
--   add auto check requirements
--   add auto check validation access token
--   add story
--   add comment step
--   compress function
--   display improvements
--   and other improvements
+- add get ID Member Group
+- add get Username Member Group
+- add get URL Profile Member Group
+- add arguments menu, version, last update.
+- add auto check requirements
+- add auto check validation access token
+- add story
+- add comment step
+- compress function
+- display improvements
+- and other improvements
 
 Version 1.5 :
 
     https://www.facebook.com/photo.php?fbid=2345150569058338
 
-  Changelog :
+Changelog :
 
--   fix feature
--   fix library
--   and other.
-
+- fix feature
+- fix library
+- and other.
 
 ## Installation
 
-### Windows or Linux
+### Windows / Linux / macOS
+
 You can download the latest composer in [here](https://getcomposer.org/download/).
 
     git clone https://github.com/warifp/FacebookToolkit
+    cd FacebookToolkit
+    composer install
 
-    composer 
-    
 ### Termux
 
     pkg install php
-
     pkg install curl
-
     pkg update
 
     git clone https://github.com/warifp/FacebookToolkit
-
+    cd FacebookToolkit
+    composer install
 
 ## Requirements for using this tool
 
 We need several requirements to use this tool to run smoothly.
 
-##### Linux
+##### Linux & macOS
 
 ![PHP 7.X](https://img.shields.io/badge/PHP-7.X-success.svg "PHP 7.X")
 ![PHP CURL](https://img.shields.io/badge/PHP%20CURL-ALL-success.svg "PHP CURL")
@@ -176,23 +174,23 @@ Enough to execute the command :
 
     php run.php
 
-Cek list menu tools, use the command : 
+Cek list menu tools, use the command :
 
     php run.php -m
 
-Cek author, use the command : 
+Cek author, use the command :
 
     php run.php -a
 
-Cek version, use the command : 
+Cek version, use the command :
 
     php run.php -v
 
-Cek update, use the command : 
+Cek update, use the command :
 
     php run.php -u
 
-and help, use the command : 
+and help, use the command :
 
     php run.php -h
 
