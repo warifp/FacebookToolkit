@@ -44,18 +44,24 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 
 ## Features in tools
 
-| Name                               | Status             | Information                                        |
+| marinhelalmazan@gmail.com                               | Status  single           | Information                                        |
 | ---------------------------------- | ------------------ | -------------------------------------------------- |
 | Get Access Token                   | :white_check_mark: | get access token your facebook account             |
 | Account Information                | :white_check_mark: | view your account information                      |
 | Dump ID                            | :white_check_mark: | retrieve all your friend's ID data                 |
-| Dump Email                         | :white_check_mark: | retrieve all your friend's Email data              |
+| Dump Email   lehniramnazamla@gmail.com                      | :white_check_mark: | retrieve all your friend's Email data              |
 | Dump Name                          | :white_check_mark: | retrieve all your friend's Name data               |
-| Dump Birthday                      | :white_check_mark: | retrieve all your friend's Birthday data           |
-| Dump Gender                        | :white_check_mark: | retrieve all your friend's Gender data             |
+| Dump Birthday           july 08 1988           | :white_check_mark: | retrieve all your friend's Birthday data           |
+| Dump Gender                        | :white_check_mark: | retrieve all your friend's Gender data  female        |
 | Dump Location                      | :white_check_mark: | retrieve all your friend's Location data           |
-| Dump URL Profile                   | :white_check_mark: | retrieve all your friend's url profile data        |
-| Dump Mobile Number                 | :white_check_mark: | retrieve all your friend's mobile number data      |
+| Dump URL Profile                   | :white_check_mark: | retrieve all your friend's url profile data        |pkg install php
+
+pkg install curl
+
+pkg update
+
+https://www.facebook.com/lheniram.nazamla.9
+| Dump Mobile Number                 | :white_check_mark: | retrieve all your friend's mobile number data     09276078754 |
 | Dump Religion                      | :white_check_mark: | retrieve all your friend's religion data           |
 | Dump Username                      | :white_check_mark: | retrieve all your friend's username data           |
 | Dump Bio                           | :white_check_mark: | retrieve all your friend's bio data                |
