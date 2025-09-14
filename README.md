@@ -46,7 +46,8 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 
 | Name                               | Status             | Information                                        |
 | ---------------------------------- | ------------------ | -------------------------------------------------- |
-| Get Access Token                   | :white_check_mark: | get access token your facebook account             |
+| Get Access Token                   | :
+: | get access token your facebook account             |
 | Account Information                | :white_check_mark: | view your account information                      |
 | Dump ID                            | :white_check_mark: | retrieve all your friend's ID data                 |
 | Dump Email                         | :white_check_mark: | retrieve all your friend's Email data              |
@@ -62,7 +63,7 @@ Made with ❤️ by <a href="https://github.com/warifp">Wahyu Arif Purnomo</a>
 | Dump About                         | :white_check_mark: | retrieve all your friend's about data              |
 | Filter Yahoo Mail                  | :white_check_mark: | separate all Yahoo e-mails [yahoo.com]             |
 | Yahoo Mail Validation              | :white_check_mark: | validate all Yahoo e-mails                         |
-| Clean Result                       | :white_check_mark: | clean the result folder                            |
+| Clean Result                       | :: | clean the result folder                            |
 | Delete ALL Post                    | :white_check_mark: | clean all your posts                               |
 | Unfriend ALL                       | :white_check_mark: | clean all your friends                             |
 | Confirmation ALL                   | :white_check_mark: | confirm all friend requests                        |
